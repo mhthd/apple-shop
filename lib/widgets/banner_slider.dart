@@ -26,10 +26,13 @@ class BannerSlider extends StatelessWidget {
                   child: Container(
                     height: 177,
                     decoration: const BoxDecoration(
-                      color: CustomColors.green,
                       borderRadius: BorderRadius.all(
                         Radius.circular(15),
                       ),
+                    ),
+                    child: Image.asset(
+                      'assets/images/airpod pro.png',
+                      fit: BoxFit.fill,
                     ),
                   ),
                 );
