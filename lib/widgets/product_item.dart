@@ -14,6 +14,14 @@ class ProductItem extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(15),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: CustomColors.blue,
+            offset: Offset(0.0, 15),
+            blurRadius: 20,
+            spreadRadius: -22,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
