@@ -21,13 +21,15 @@ class ProductItem extends StatelessWidget {
           SizedBox(
             height: 124,
             child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: itemImage()),
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: itemImage(),
+            ),
           ),
           Padding(
-              padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
-              child: itemName()),
-          itemPrice()
+            padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
+            child: itemName(),
+          ),
+          itemPrice(),
         ],
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:apple_shop/constants/custom_colors.dart';
-import 'package:apple_shop/widgets/category_item.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
