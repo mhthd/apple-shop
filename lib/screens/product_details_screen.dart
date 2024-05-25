@@ -1,5 +1,6 @@
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -117,7 +118,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       child: SizedBox(
                         height: 70,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 35),
+                          padding: const EdgeInsets.symmetric(horizontal: 35),
                           child: ListView.builder(
                             itemCount: 4,
                             scrollDirection: Axis.horizontal,
@@ -150,7 +151,312 @@ class ProductDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            )
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 44),
+                    child: Text(
+                      'انتخاب رنگ',
+                      style: TextStyle(
+                        fontFamily: 'sb',
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 26,
+                    child: ListView.builder(
+                      itemCount: 3,
+                      reverse: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 39),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 26,
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 44),
+                    child: Text(
+                      'انتخاب حافظه داخلی',
+                      style: TextStyle(
+                        fontFamily: 'sb',
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 26,
+                    child: ListView.builder(
+                      itemCount: 3,
+                      reverse: true,
+                      padding: const EdgeInsets.symmetric(horizontal: 39),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          width: 74,
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border:
+                                Border.all(width: 1, color: CustomColors.grey),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              '128',
+                              style: TextStyle(fontFamily: 'sb', fontSize: 12),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                ],
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 46,
+                margin: const EdgeInsets.only(left: 44, right: 44, bottom: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 1, color: CustomColors.grey),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icon_left_categroy.png'),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'مشاهده',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                          color: CustomColors.blue,
+                        ),
+                      ),
+                      const Spacer(),
+                      const Text(
+                        ':مشخصات فنی',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 46,
+                margin: const EdgeInsets.only(left: 44, right: 44, bottom: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 1, color: CustomColors.grey),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icon_left_categroy.png'),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'مشاهده',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                          color: CustomColors.blue,
+                        ),
+                      ),
+                      const Spacer(),
+                      const Text(
+                        ':توضیحات محصول',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SliverToBoxAdapter(
+              child: Container(
+                height: 46,
+                margin: const EdgeInsets.only(left: 44, right: 44, bottom: 20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(width: 1, color: CustomColors.grey),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      Image.asset('assets/images/icon_left_categroy.png'),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'مشاهده',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                          color: CustomColors.blue,
+                        ),
+                      ),
+                      const Spacer(),
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            width: 26,
+                            height: 26,
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              border: Border.all(width: 1, color: Colors.white),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 18,
+                            child: Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 36,
+                            child: Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 54,
+                            child: Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 72,
+                            child: Container(
+                              width: 26,
+                              height: 26,
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                border:
+                                    Border.all(width: 1, color: Colors.white),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  '+۱۰',
+                                  style: TextStyle(
+                                    fontFamily: 'sb',
+                                    fontSize: 10,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        ':نظرات کاربران ',
+                        style: TextStyle(
+                          fontFamily: 'sb',
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
