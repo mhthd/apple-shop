@@ -648,25 +648,22 @@ class PriceTagButton extends StatelessWidget {
                             Radius.circular(7.5),
                           ),
                         ),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              '%',
+                        child: Center(
+                          child: RichText(
+                            text: const TextSpan(
+                              text: '%',
                               style: TextStyle(
-                                  fontSize: 9,
+                                  fontSize: 10,
                                   fontFamily: 'GB',
                                   color: Colors.white),
+                              children: [
+                                TextSpan(
+                                  text: '۵',
+                                  style: TextStyle(fontFamily: 'sb'),
+                                ),
+                              ],
                             ),
-                            Text(
-                              '۳',
-                              style: TextStyle(
-                                  fontSize: 9,
-                                  fontFamily: 'SB',
-                                  color: Colors.white),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ],
