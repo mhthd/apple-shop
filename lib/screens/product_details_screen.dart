@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_borders/gradient_borders.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key});
@@ -331,7 +334,7 @@ class ProductDetailsScreen extends StatelessWidget {
             SliverToBoxAdapter(
               child: Container(
                 height: 46,
-                margin: const EdgeInsets.only(left: 44, right: 44, bottom: 20),
+                margin: const EdgeInsets.only(left: 44, right: 44),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   border: Border.all(width: 1, color: CustomColors.grey),
@@ -457,9 +460,223 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding:
+                    EdgeInsets.only(top: 38, bottom: 32, left: 50, right: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PriceTagButton(),
+                    Spacer(),
+                    AddToBasketButton(),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
+    );
+  }
+}
+
+class AddToBasketButton extends StatelessWidget {
+  const AddToBasketButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: AlignmentDirectional.bottomCenter,
+      children: [
+        Container(
+          height: 47,
+          width: 140,
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+              color: CustomColors.blue),
+        ),
+        Positioned(
+          top: 5,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
+            ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+              child: Container(
+                height: 53,
+                width: 160,
+                decoration: const BoxDecoration(
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.white,
+                          CustomColors.lightGrey,
+                          CustomColors.lightGrey,
+                          CustomColors.lightGrey
+                        ]),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  image: DecorationImage(
+                    opacity: 0.1,
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      'assets/images/grain.png',
+                    ),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    'افزودن به سبد خرید',
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'sb', fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PriceTagButton extends StatelessWidget {
+  const PriceTagButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: AlignmentDirectional.bottomCenter,
+      children: [
+        Container(
+          height: 47,
+          width: 140,
+          decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+              color: CustomColors.green),
+        ),
+        Positioned(
+          top: 5,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
+            ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 25, sigmaY: 25),
+              child: Container(
+                height: 53,
+                width: 160,
+                decoration: const BoxDecoration(
+                  border: GradientBoxBorder(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.white,
+                          CustomColors.lightGrey,
+                          CustomColors.lightGrey,
+                          CustomColors.lightGrey
+                        ]),
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                  image: DecorationImage(
+                    opacity: 0.1,
+                    fit: BoxFit.cover,
+                    image: AssetImage(
+                      'assets/images/grain.png',
+                    ),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Row(
+                    children: [
+                      const Text(
+                        'تومان',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'SB',
+                            fontSize: 12),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '۴۶٬۰۰۰٬۰۰۰',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'SB',
+                                fontSize: 12,
+                                decoration: TextDecoration.lineThrough),
+                          ),
+                          Text(
+                            '۴۵٬۳۵۰٬۰۰۰',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: 'SB',
+                                fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Container(
+                        height: 15,
+                        width: 25,
+                        decoration: const BoxDecoration(
+                          color: CustomColors.red,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(7.5),
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '%',
+                              style: TextStyle(
+                                  fontSize: 9,
+                                  fontFamily: 'GB',
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              '۳',
+                              style: TextStyle(
+                                  fontSize: 9,
+                                  fontFamily: 'SB',
+                                  color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
