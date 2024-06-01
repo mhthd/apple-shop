@@ -12,45 +12,73 @@ class CardScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColors.lightGrey,
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 32),
-                child: CustomAppBar(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: [
-                            const Text(
-                              'سبد خرید',
-                              style: TextStyle(
-                                color: CustomColors.blue,
-                                fontFamily: 'SB',
-                                fontSize: 16,
-                              ),
+        child: Stack(
+          alignment: AlignmentDirectional.bottomCenter,
+          children: [
+            CustomScrollView(
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 32),
+                    child: CustomAppBar(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Stack(
+                              alignment: AlignmentDirectional.center,
+                              children: [
+                                const Text(
+                                  'سبد خرید',
+                                  style: TextStyle(
+                                    color: CustomColors.blue,
+                                    fontFamily: 'SB',
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 15,
+                                  child: Image.asset(
+                                    'assets/images/icon_apple_blue.png',
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: double.infinity,
+                                )
+                              ],
                             ),
-                            Positioned(
-                              left: 15,
-                              child: Image.asset(
-                                'assets/images/icon_apple_blue.png',
-                              ),
-                            ),
-                            const SizedBox(
-                              height: double.infinity,
-                            )
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                SliverList.builder(
+                  itemCount: 4,
+                  itemBuilder: ((context, index) {
+                    return const CardItem();
+                  }),
+                ),
+              ],
             ),
-            const SliverToBoxAdapter(
-              child: CardItem(),
+            Padding(
+              padding: const EdgeInsets.only(left: 44, right: 44, bottom: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  textStyle: const TextStyle(fontFamily: 'sb', fontSize: 16),
+                  fixedSize: Size(MediaQuery.of(context).size.width, 53),
+                  backgroundColor: CustomColors.green,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  'ادامه فرآیند خرید',
+                ),
+              ),
             )
           ],
         ),
