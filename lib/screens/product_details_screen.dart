@@ -2,9 +2,10 @@ import 'dart:ui';
 
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gradient_borders/gradient_borders.dart';
+
+import '../widgets/off_tag.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key});
@@ -603,21 +604,21 @@ class PriceTagButton extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Row(
                     children: [
-                      const Text(
+                      Text(
                         'تومان',
                         style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'SB',
                             fontSize: 12),
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 5,
                       ),
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -638,33 +639,9 @@ class PriceTagButton extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const Spacer(),
-                      Container(
-                        height: 15,
-                        width: 25,
-                        decoration: const BoxDecoration(
-                          color: CustomColors.red,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(7.5),
-                          ),
-                        ),
-                        child: Center(
-                          child: RichText(
-                            text: const TextSpan(
-                              text: '%',
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  fontFamily: 'GB',
-                                  color: Colors.white),
-                              children: [
-                                TextSpan(
-                                  text: '۵',
-                                  style: TextStyle(fontFamily: 'sb'),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                      Spacer(),
+                      OffTag(
+                        percent: 5,
                       ),
                     ],
                   ),

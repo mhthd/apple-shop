@@ -1,4 +1,5 @@
 import 'package:apple_shop/constants/custom_colors.dart';
+import 'package:apple_shop/widgets/off_tag.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
@@ -56,35 +57,12 @@ class ProductItem extends StatelessWidget {
           right: 10,
           child: Image.asset('assets/images/active_fav_product.png'),
         ),
-        Positioned(
-          bottom: 0,
-          left: 10,
-          child: Container(
-            height: 15,
-            width: 25,
-            decoration: const BoxDecoration(
-              color: CustomColors.red,
-              borderRadius: BorderRadius.all(
-                Radius.circular(7.5),
-              ),
-            ),
-            child: Center(
-              child: RichText(
-                text: const TextSpan(
-                  text: '%',
-                  style: TextStyle(
-                      fontSize: 10, fontFamily: 'GB', color: Colors.white),
-                  children: [
-                    TextSpan(
-                      text: '۵',
-                      style: TextStyle(fontFamily: 'sb'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
+        const Positioned(
+            bottom: 0,
+            left: 10,
+            child: OffTag(
+              percent: 5,
+            )),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:apple_shop/constants/custom_colors.dart';
+import 'package:apple_shop/screens/card_screen.dart';
 import 'package:apple_shop/screens/category_screen.dart';
 import 'package:apple_shop/screens/home_screen.dart';
 import 'package:apple_shop/screens/best_seller_products_screen.dart';
@@ -21,7 +22,7 @@ class AppleShop extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProductDetailsScreen(),
+      home: CardScreen(),
     );
   }
 }
