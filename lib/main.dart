@@ -50,11 +50,7 @@ class _AppleShopState extends State<AppleShop> {
                   iconImage: 'icon_profile.png',
                   activationIconImage: 'icon_profile_active.png',
                 ),
-                customBottomNavigationBarItem(
-                  label: 'سبد خرید',
-                  iconImage: 'icon_basket.png',
-                  activationIconImage: 'icon_basket_active.png',
-                ),
+                bottomNavigationBasketItem(),
                 customBottomNavigationBarItem(
                   label: 'دسته بندی',
                   iconImage: 'icon_category.png',
@@ -70,6 +66,87 @@ class _AppleShopState extends State<AppleShop> {
           ),
         ),
       ),
+    );
+  }
+
+  BottomNavigationBarItem bottomNavigationBasketItem() {
+    return BottomNavigationBarItem(
+      icon: Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 10),
+        child: Stack(
+          alignment: AlignmentDirectional.topEnd,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('assets/images/icon_basket.png'),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  'سبد خرید',
+                  style: TextStyle(
+                    fontFamily: 'sb',
+                    fontSize: 10,
+                    color: Colors.black,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              height: 15,
+              width: 15,
+              decoration: const BoxDecoration(
+                  color: CustomColors.red, shape: BoxShape.circle),
+              child: const Center(
+                child: Text(
+                  '۳',
+                  style: TextStyle(
+                      fontFamily: 'sb', color: Colors.white, fontSize: 12),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      activeIcon: Padding(
+        padding: const EdgeInsets.only(top: 15, bottom: 10),
+        child: Stack(
+          alignment: AlignmentDirectional.topEnd,
+          children: [
+            Column(
+              children: [
+                Image.asset('assets/images/icon_basket_active.png'),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  'سبد خرید',
+                  style: TextStyle(
+                    fontFamily: 'sb',
+                    fontSize: 10,
+                    color: CustomColors.blue,
+                  ),
+                )
+              ],
+            ),
+            Container(
+              height: 15,
+              width: 15,
+              decoration: const BoxDecoration(
+                  color: CustomColors.red, shape: BoxShape.circle),
+              child: const Center(
+                child: Text(
+                  '۳',
+                  style: TextStyle(
+                      fontFamily: 'sb', color: Colors.white, fontSize: 12),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      label: 'سبد خرید',
     );
   }
 

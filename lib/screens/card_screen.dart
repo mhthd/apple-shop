@@ -52,11 +52,14 @@ class CardScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SliverList.builder(
-                  itemCount: 4,
-                  itemBuilder: ((context, index) {
-                    return const CardItem();
-                  }),
+                SliverPadding(
+                  padding: const EdgeInsets.only(bottom: 75),
+                  sliver: SliverList.builder(
+                    itemCount: 4,
+                    itemBuilder: ((context, index) {
+                      return const CardItem();
+                    }),
+                  ),
                 ),
               ],
             ),
