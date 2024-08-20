@@ -1,12 +1,19 @@
 import 'dart:ui';
+import 'package:apple_shop/bloc/auth_bloc.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
+import 'package:apple_shop/di/di.dart';
 import 'package:apple_shop/screens/card_screen.dart';
 import 'package:apple_shop/screens/category_screen.dart';
 import 'package:apple_shop/screens/home_screen.dart';
+import 'package:apple_shop/screens/login_screen.dart';
 import 'package:apple_shop/screens/profile_screen.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  await getItInit();
   runApp(const AppleShop());
 }
 
@@ -25,10 +32,15 @@ class _AppleShopState extends State<AppleShop> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: IndexedStack(
-          index: selectedBottomNavogationIndex,
-          children: _getScreens(),
+        body: BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(),
+          child: LoginScreen(),
         ),
+
+        // IndexedStack(
+        //   index: selectedBottomNavogationIndex,
+        //   children: _getScreens(),
+        // ),
         bottomNavigationBar: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),
