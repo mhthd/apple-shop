@@ -1,5 +1,9 @@
+import 'package:apple_shop/bloc/auth_bloc.dart';
+import 'package:apple_shop/bloc/auth_event.dart';
+import 'package:apple_shop/bloc/auth_state.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -114,14 +118,34 @@ class LoginScreen extends StatelessWidget {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('ورود به حساب کاربری'),
-                      ),
-                      const SizedBox(
-                        height: 35.0,
-                      ),
-                      const Text(''),
+                      BlocBuilder<AuthBloc, AuthState>(
+                        builder: (context, state) {
+                          if (state is AuthInitialState) {
+                            return ElevatedButton(
+                              onPressed: () {
+                                BlocProvider.of<AuthBloc>(context).add(
+                                  AuthLoginRequestEvent(
+                                      _usernameInputController.text,
+                                      _passwordInputController.text),
+                                );
+                              },
+                              child: const Text('ورود به حساب کاربری'),
+                            );
+                          }
+                          if (state is AuthLoadingState) {
+                            return const CircularProgressIndicator();
+                          }
+                          if (state is AuthResponseState) {
+                            Text text = const Text('');
+                            state.response.fold(
+                              (l) => text = Text(l),
+                              (r) => text = Text(r),
+                            );
+                            return text;
+                          }
+                          return const Text('unkown error!');
+                        },
+                      )
                     ],
                   ),
                 ),
