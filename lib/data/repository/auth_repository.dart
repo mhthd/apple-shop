@@ -17,7 +17,7 @@ final class AuthRepository implements IAuthRepository {
   Future<Either<String, String>> register(
       String username, String password, String passwordConfirm) async {
     try {
-      await _dataSource.resgister(username, password, passwordConfirm);
+      await _dataSource.register(username, password, passwordConfirm);
       return right('succeed');
     } on ApiException catch (e) {
       return left('${e.message}');
