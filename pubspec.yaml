@@ -39,10 +39,10 @@ dependencies:
   dotted_line: ^3.2.2
   dartz: ^0.10.1
   dio: ^5.4.3+1
-  get_it: ^7.6.7
-  shared_preferences: 2.2.3
-  bloc: 8.1.0
-  flutter_bloc: 8.1.1
+  get_it: ^8.0.0
+  shared_preferences: ^2.3.2
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:
@@ -53,7 +53,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
