@@ -24,22 +24,24 @@ class ProductItem extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          SizedBox(
-            height: 124,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: itemImage(),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 124,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: itemImage(),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
-            child: itemName(),
-          ),
-          itemPrice(),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
+              child: itemName(),
+            ),
+            itemPrice(),
+          ],
+        ),
       ),
     );
   }

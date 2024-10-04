@@ -32,15 +32,15 @@ class _AppleShopState extends State<AppleShop> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(),
-          child: LoginScreen(),
-        ),
-
-        // IndexedStack(
-        //   index: selectedBottomNavogationIndex,
-        //   children: _getScreens(),
+        // body: BlocProvider<AuthBloc>(
+        //   create: (context) => AuthBloc(),
+        //   child: LoginScreen(),
         // ),
+
+        body: IndexedStack(
+          index: selectedBottomNavogationIndex,
+          children: _getScreens(),
+        ),
         bottomNavigationBar: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 40, sigmaY: 40),

@@ -11,41 +11,43 @@ class CategoryItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
-      child: Column(
-        children: [
-          Container(
-            height: 56,
-            width: 56,
-            decoration: const ShapeDecoration(
-              color: Colors.blue,
-              shadows: [
-                BoxShadow(
-                  color: Colors.blue,
-                  offset: Offset(0.0, 15),
-                  blurRadius: 25,
-                  spreadRadius: -18,
-                )
-              ],
-              shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(45),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: 56,
+              width: 56,
+              decoration: const ShapeDecoration(
+                color: Colors.blue,
+                shadows: [
+                  BoxShadow(
+                    color: Colors.blue,
+                    offset: Offset(0.0, 15),
+                    blurRadius: 25,
+                    spreadRadius: -18,
+                  )
+                ],
+                shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(45),
+                  ),
                 ),
               ),
+              child: const Icon(
+                Icons.ads_click,
+                color: Colors.white,
+              ),
             ),
-            child: const Icon(
-              Icons.ads_click,
-              color: Colors.white,
+            const SizedBox(
+              height: 10,
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            'همه',
-            style:
-                TextStyle(fontFamily: 'SB', fontSize: 12, color: Colors.black),
-          )
-        ],
+            const Text(
+              'همه',
+              style: TextStyle(
+                  fontFamily: 'SB', fontSize: 12, color: Colors.black),
+            )
+          ],
+        ),
       ),
     );
   }
