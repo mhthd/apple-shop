@@ -1,5 +1,5 @@
-import 'package:apple_shop/bloc/auth_event.dart';
-import 'package:apple_shop/bloc/auth_state.dart';
+import 'package:apple_shop/bloc/authentication/auth_event.dart';
+import 'package:apple_shop/bloc/authentication/auth_state.dart';
 import 'package:apple_shop/data/repository/auth_repository.dart';
 import 'package:apple_shop/di/di.dart';
 import 'package:bloc/bloc.dart';
