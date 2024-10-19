@@ -1,4 +1,5 @@
 import 'package:apple_shop/data/datasource/auth_datasource.dart';
+import 'package:apple_shop/data/datasource/banner_datasource.dart';
 import 'package:apple_shop/data/repository/auth_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -16,6 +17,7 @@ Future<void> getItInit() async {
 
   // Data Sources
   locator.registerFactory<IAuthDataSource>(() => AuthRemote());
+  locator.registerFactory<IBannerDatasource>(() => BannerRemoteDatasource());
 
   // Repositories
   locator.registerFactory<IAuthRepository>(() => AuthRepository());
