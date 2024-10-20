@@ -8,6 +8,6 @@ class HomeInitState extends HomeState {}
 class HomeLoadingState extends HomeState {}
 
 class HomeResponseState extends HomeState {
-  Either<String, List<Banner>> bannersList;
+  Either<String, List<HomeBanner>> bannersList;
   HomeResponseState(this.bannersList);
 }

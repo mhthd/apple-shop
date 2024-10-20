@@ -5,13 +5,13 @@ import 'package:apple_shop/widgets/banner.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IBannerRepository {
-  Future<Either<String, List<Banner>>> getBanners();
+  Future<Either<String, List<HomeBanner>>> getBanners();
 }
 
 class BannerRepository extends IBannerRepository {
   final IBannerDatasource _bannerDatasource = locator.get();
   @override
-  Future<Either<String, List<Banner>>> getBanners() async {
+  Future<Either<String, List<HomeBanner>>> getBanners() async {
     try {
       var response = await _bannerDatasource.getBanners();
       return right(response);
