@@ -1,6 +1,6 @@
-import 'package:apple_shop/bloc/auth_bloc.dart';
-import 'package:apple_shop/bloc/auth_event.dart';
-import 'package:apple_shop/bloc/auth_state.dart';
+import 'package:apple_shop/bloc/authentication/auth_bloc.dart';
+import 'package:apple_shop/bloc/authentication/auth_event.dart';
+import 'package:apple_shop/bloc/authentication/auth_state.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
