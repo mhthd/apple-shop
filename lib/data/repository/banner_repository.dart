@@ -1,7 +1,7 @@
 import 'package:apple_shop/data/datasource/banner_datasource.dart';
 import 'package:apple_shop/di/di.dart';
 import 'package:apple_shop/util/api_exception.dart';
-import 'package:apple_shop/widgets/home_banner.dart';
+import 'package:apple_shop/model/home_banner.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class IBannerRepository {

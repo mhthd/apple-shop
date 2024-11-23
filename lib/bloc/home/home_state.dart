@@ -1,4 +1,4 @@
-import 'package:apple_shop/widgets/home_banner.dart';
+import 'package:apple_shop/model/home_banner.dart';
 import 'package:dartz/dartz.dart';
 
 class HomeState {}
