@@ -1,5 +1,6 @@
 import 'dart:ui';
-import 'package:apple_shop/bloc/auth_bloc.dart';
+import 'package:apple_shop/bloc/authentication/auth_bloc.dart';
+import 'package:apple_shop/bloc/home/home_bloc.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/di/di.dart';
 import 'package:apple_shop/screens/card_screen.dart';
@@ -212,11 +213,14 @@ class _AppleShopState extends State<AppleShop> {
   }
 
   List<Widget> _getScreens() {
-    return const [
-      ProfileScreen(),
-      CardScreen(),
-      CategoryScreen(),
-      HomeScreen(),
+    return [
+      const ProfileScreen(),
+      const CardScreen(),
+      const CategoryScreen(),
+      BlocProvider(
+        create: (context) => HomeBloc(),
+        child: const HomeScreen(),
+      ),
     ];
   }
 }
