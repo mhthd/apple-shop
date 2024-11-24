@@ -2,6 +2,7 @@ import 'package:apple_shop/bloc/home/home_bloc.dart';
 import 'package:apple_shop/bloc/home/home_event.dart';
 import 'package:apple_shop/bloc/home/home_state.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
+import 'package:apple_shop/model/category.dart';
 import 'package:apple_shop/widgets/banner_slider.dart';
 import 'package:apple_shop/widgets/category_item.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
@@ -90,23 +91,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      height: 82,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 34),
-                        scrollDirection: Axis.horizontal,
-                        reverse: true,
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const CategoryItem();
-                        },
-                      ),
+                if (state is HomeResponseState) ...[
+                  state.categoryList.fold(
+                    (errorMessage) =>
+                        SliverToBoxAdapter(child: Text(errorMessage)),
+                    (categoryList) => _getCategoryList(
+                      categoryList,
                     ),
                   ),
-                ),
+                ],
                 SliverToBoxAdapter(
                   child: Padding(
                     padding:
@@ -211,6 +204,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         }),
+      ),
+    );
+  }
+}
+
+class _getCategoryList extends StatelessWidget {
+  List<Category> categoryList;
+  _getCategoryList(this.categoryList, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: SizedBox(
+          height: 82,
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 34),
+            scrollDirection: Axis.horizontal,
+            reverse: true,
+            itemCount: categoryList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CategoryItem(
+                category: categoryList[index],
+              );
+            },
+          ),
+        ),
       ),
     );
   }

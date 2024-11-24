@@ -1,12 +1,14 @@
+import 'package:apple_shop/model/category.dart';
+import 'package:apple_shop/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({
-    super.key,
-  });
+  final Category category;
+  const CategoryItem({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
+    int hexColor = int.parse('ff${category.color}', radix: 16);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -17,8 +19,8 @@ class CategoryItem extends StatelessWidget {
             Container(
               height: 56,
               width: 56,
-              decoration: const ShapeDecoration(
-                color: Colors.blue,
+              decoration: ShapeDecoration(
+                color: Color(hexColor),
                 shadows: [
                   BoxShadow(
                     color: Colors.blue,
@@ -33,16 +35,16 @@ class CategoryItem extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Icon(
-                Icons.ads_click,
-                color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: CachedImage(imageUrl: category.icon),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              'همه',
+            Text(
+              category.title ?? 'محصولات',
               style: TextStyle(
                   fontFamily: 'SB', fontSize: 12, color: Colors.black),
             )
