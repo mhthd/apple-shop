@@ -1,3 +1,4 @@
+import 'package:apple_shop/model/category.dart';
 import 'package:apple_shop/model/home_banner.dart';
 import 'package:dartz/dartz.dart';
 
@@ -9,5 +10,6 @@ class HomeLoadingState extends HomeState {}
 
 class HomeResponseState extends HomeState {
   Either<String, List<HomeBanner>> bannersList;
-  HomeResponseState(this.bannersList);
+  Either<String, List<Category>> categoryList;
+  HomeResponseState(this.bannersList, this.categoryList);
 }
