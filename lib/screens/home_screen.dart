@@ -3,6 +3,7 @@ import 'package:apple_shop/bloc/home/home_event.dart';
 import 'package:apple_shop/bloc/home/home_state.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/model/category.dart';
+import 'package:apple_shop/model/product.dart';
 import 'package:apple_shop/widgets/banner_slider.dart';
 import 'package:apple_shop/widgets/category_item.dart';
 import 'package:apple_shop/widgets/custom_app_bar.dart';
@@ -92,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 if (state is HomeResponseState) ...[
-                  state.categoryList.fold(
+                  state.categoriesList.fold(
                     (errorMessage) =>
                         SliverToBoxAdapter(child: Text(errorMessage)),
                     (categoryList) => _getCategoryList(
@@ -130,26 +131,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      height: 216,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        itemCount: 5,
-                        reverse: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: ProductItem(),
-                          );
-                        },
-                      ),
+                if (state is HomeResponseState) ...[
+                  state.bestSellerProductsList.fold(
+                    (errorMessage) => SliverToBoxAdapter(
+                      child: Text(errorMessage),
                     ),
+                    (bestSellerProductsList) =>
+                        _getBestSellerProductsList(bestSellerProductsList),
                   ),
-                ),
+                ],
                 SliverToBoxAdapter(
                   child: Padding(
                     padding:
@@ -180,30 +170,85 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 20),
-                    child: SizedBox(
-                      height: 216,
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        itemCount: 5,
-                        reverse: true,
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: ProductItem(),
-                          );
-                        },
-                      ),
+                if (state is HomeResponseState) ...[
+                  state.hotestProductsList.fold(
+                    (errorMessage) => SliverToBoxAdapter(
+                      child: Text(errorMessage),
                     ),
+                    (hotestProductsList) =>
+                        _getMostViewedProducts(hotestProductsList),
                   ),
-                ),
+                ],
               }
             ],
           );
         }),
+      ),
+    );
+  }
+}
+
+class _getMostViewedProducts extends StatelessWidget {
+  List<Product> hotestProductsList;
+  _getMostViewedProducts(
+    this.hotestProductsList, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: SizedBox(
+          height: 216,
+          child: ListView.builder(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            itemCount: hotestProductsList.length,
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: ProductItem(
+                  hotestProductsList[index],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _getBestSellerProductsList extends StatelessWidget {
+  List<Product> bestSellerProductsList;
+  _getBestSellerProductsList(
+    this.bestSellerProductsList, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: SizedBox(
+          height: 216,
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            itemCount: bestSellerProductsList.length,
+            reverse: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: ProductItem(bestSellerProductsList[index]),
+              );
+            },
+          ),
+        ),
       ),
     );
   }

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class OffTag extends StatelessWidget {
   const OffTag({super.key, required this.percent});
 
-  final int percent;
+  final num percent;
 
   @override
   Widget build(BuildContext context) {

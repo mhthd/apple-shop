@@ -1,9 +1,12 @@
 import 'package:apple_shop/constants/custom_colors.dart';
+import 'package:apple_shop/model/product.dart';
+import 'package:apple_shop/widgets/cached_image.dart';
 import 'package:apple_shop/widgets/off_tag.dart';
 import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({super.key});
+  Product product;
+  ProductItem(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,25 +56,29 @@ class ProductItem extends StatelessWidget {
         const SizedBox(
           width: double.infinity,
         ),
-        Image.asset('assets/images/iphone.png'),
+        Padding(
+          padding: const EdgeInsets.all(22.0),
+          child: CachedImage(imageUrl: product.thumbnail),
+        ),
         Positioned(
           top: 0,
           right: 10,
           child: Image.asset('assets/images/active_fav_product.png'),
         ),
-        const Positioned(
-            bottom: 0,
-            left: 10,
-            child: OffTag(
-              percent: 5,
-            )),
+        Positioned(
+          bottom: 0,
+          left: 10,
+          child: OffTag(
+            percent: product.discountPercent!,
+          ),
+        ),
       ],
     );
   }
 
   Widget itemName() {
-    return const Text(
-      'آیفون ۱۳ پرومکس',
+    return Text(
+      product.name!,
       style: TextStyle(fontSize: 14, fontFamily: 'SB', color: Colors.black),
     );
   }
@@ -98,12 +105,12 @@ class ProductItem extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '۴۶٬۰۰۰٬۰۰۰',
+                  '${product.realPrice}',
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'SB',
@@ -111,7 +118,7 @@ class ProductItem extends StatelessWidget {
                       decoration: TextDecoration.lineThrough),
                 ),
                 Text(
-                  '۴۵٬۳۵۰٬۰۰۰',
+                  '${product.price}',
                   style: TextStyle(
                       color: Colors.white, fontFamily: 'SB', fontSize: 16),
                 ),
