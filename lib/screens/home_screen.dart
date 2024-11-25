@@ -3,6 +3,7 @@ import 'package:apple_shop/bloc/home/home_event.dart';
 import 'package:apple_shop/bloc/home/home_state.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/model/category.dart';
+import 'package:apple_shop/model/home_banner.dart';
 import 'package:apple_shop/model/product.dart';
 import 'package:apple_shop/widgets/banner_slider.dart';
 import 'package:apple_shop/widgets/category_item.dart';
@@ -38,60 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CircularProgressIndicator(),
                 )
               } else ...{
-                SliverToBoxAdapter(
-                  child: CustomAppBar(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: Row(
-                        children: [
-                          Image.asset('assets/images/icon_apple_blue.png'),
-                          const Spacer(),
-                          const Text(
-                            'جستجوی محصولات',
-                            style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: 'SB',
-                                color: CustomColors.grey),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Image.asset('assets/images/icon_search.png'),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                _getSearchBar(),
                 if (state is HomeResponseState) ...[
                   state.bannersList.fold(
                     (errorMessage) =>
                         SliverToBoxAdapter(child: Text(errorMessage)),
-                    (bannersList) => SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 32),
-                        child: BannerSlider(bannersList),
-                      ),
-                    ),
+                    (bannersList) => _getBannerSlider(bannersList),
                   ),
                 ],
-                const SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 32, right: 44, left: 44),
-                    child: Row(
-                      children: [
-                        Spacer(),
-                        Text(
-                          'دسته بندی',
-                          style: TextStyle(
-                            fontFamily: 'SB',
-                            fontSize: 12,
-                            color: CustomColors.grey,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                _getCategoryListTitle(),
                 if (state is HomeResponseState) ...[
                   state.categoriesList.fold(
                     (errorMessage) =>
@@ -101,36 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ],
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 32, right: 44, left: 44),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/icon_left_categroy.png'),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'مشاهده همه',
-                          style: TextStyle(
-                              fontFamily: 'SB',
-                              fontSize: 12,
-                              color: CustomColors.blue),
-                        ),
-                        const Spacer(),
-                        const Text(
-                          'پر فروش ترین ها',
-                          style: TextStyle(
-                            fontFamily: 'SB',
-                            fontSize: 12,
-                            color: CustomColors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                _getBestSellerProductsTitle(),
                 if (state is HomeResponseState) ...[
                   state.bestSellerProductsList.fold(
                     (errorMessage) => SliverToBoxAdapter(
@@ -140,36 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         _getBestSellerProductsList(bestSellerProductsList),
                   ),
                 ],
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(top: 32, right: 44, left: 44),
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/icon_left_categroy.png'),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'مشاهده همه',
-                          style: TextStyle(
-                              fontFamily: 'SB',
-                              fontSize: 12,
-                              color: CustomColors.blue),
-                        ),
-                        const Spacer(),
-                        const Text(
-                          'پر بازدید ترین ها',
-                          style: TextStyle(
-                            fontFamily: 'SB',
-                            fontSize: 12,
-                            color: CustomColors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                _getMostViewedProductsTitle(),
                 if (state is HomeResponseState) ...[
                   state.hotestProductsList.fold(
                     (errorMessage) => SliverToBoxAdapter(
@@ -183,6 +81,158 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         }),
+      ),
+    );
+  }
+}
+
+class _getMostViewedProductsTitle extends StatelessWidget {
+  const _getMostViewedProductsTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 32, right: 44, left: 44),
+        child: Row(
+          children: [
+            Image.asset('assets/images/icon_left_categroy.png'),
+            const SizedBox(
+              width: 10,
+            ),
+            const Text(
+              'مشاهده همه',
+              style: TextStyle(
+                  fontFamily: 'SB', fontSize: 12, color: CustomColors.blue),
+            ),
+            const Spacer(),
+            const Text(
+              'پر بازدید ترین ها',
+              style: TextStyle(
+                fontFamily: 'SB',
+                fontSize: 12,
+                color: CustomColors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _getBestSellerProductsTitle extends StatelessWidget {
+  const _getBestSellerProductsTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 32, right: 44, left: 44),
+        child: Row(
+          children: [
+            Image.asset('assets/images/icon_left_categroy.png'),
+            const SizedBox(
+              width: 10,
+            ),
+            const Text(
+              'مشاهده همه',
+              style: TextStyle(
+                  fontFamily: 'SB', fontSize: 12, color: CustomColors.blue),
+            ),
+            const Spacer(),
+            const Text(
+              'پر فروش ترین ها',
+              style: TextStyle(
+                fontFamily: 'SB',
+                fontSize: 12,
+                color: CustomColors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _getCategoryListTitle extends StatelessWidget {
+  const _getCategoryListTitle({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SliverToBoxAdapter(
+      child: Padding(
+        padding: EdgeInsets.only(top: 32, right: 44, left: 44),
+        child: Row(
+          children: [
+            Spacer(),
+            Text(
+              'دسته بندی',
+              style: TextStyle(
+                fontFamily: 'SB',
+                fontSize: 12,
+                color: CustomColors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _getBannerSlider extends StatelessWidget {
+  List<HomeBanner> bannersList;
+  _getBannerSlider(
+    this.bannersList, {
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 32),
+        child: BannerSlider(bannersList),
+      ),
+    );
+  }
+}
+
+class _getSearchBar extends StatelessWidget {
+  const _getSearchBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: CustomAppBar(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            children: [
+              Image.asset('assets/images/icon_apple_blue.png'),
+              const Spacer(),
+              const Text(
+                'جستجوی محصولات',
+                style: TextStyle(
+                    fontSize: 16, fontFamily: 'SB', color: CustomColors.grey),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Image.asset('assets/images/icon_search.png'),
+            ],
+          ),
+        ),
       ),
     );
   }
