@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:apple_shop/bloc/authentication/auth_bloc.dart';
+import 'package:apple_shop/bloc/category/category_bloc.dart';
 import 'package:apple_shop/bloc/home/home_bloc.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/di/di.dart';
@@ -216,7 +217,10 @@ class _AppleShopState extends State<AppleShop> {
     return [
       const ProfileScreen(),
       const CardScreen(),
-      const CategoryScreen(),
+      BlocProvider(
+        create: (context) => CategoryBloc(),
+        child: CategoryScreen(),
+      ),
       BlocProvider(
         create: (context) => HomeBloc(),
         child: const HomeScreen(),
