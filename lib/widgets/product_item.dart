@@ -1,8 +1,11 @@
+import 'package:apple_shop/bloc/product/product_bloc.dart';
 import 'package:apple_shop/constants/custom_colors.dart';
 import 'package:apple_shop/model/product.dart';
+import 'package:apple_shop/screens/product_details_screen.dart';
 import 'package:apple_shop/widgets/cached_image.dart';
 import 'package:apple_shop/widgets/off_tag.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductItem extends StatelessWidget {
   Product product;
@@ -10,40 +13,51 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 216,
-      width: 160,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.all(
-          Radius.circular(15),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: CustomColors.blue,
-            offset: Offset(0.0, 15),
-            blurRadius: 20,
-            spreadRadius: -22,
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext contect) => BlocProvider(
+            create: (context) => ProductBloc(),
+            child: ProductDetailsScreen(),
           ),
-        ],
+        ),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            SizedBox(
-              height: 124,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: itemImage(),
-              ),
+      child: Container(
+        height: 216,
+        width: 160,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(
+            Radius.circular(15),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: CustomColors.blue,
+              offset: Offset(0.0, 15),
+              blurRadius: 20,
+              spreadRadius: -22,
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
-              child: itemName(),
-            ),
-            itemPrice(),
           ],
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SizedBox(
+                height: 124,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: itemImage(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
+                child: itemName(),
+              ),
+              itemPrice(),
+            ],
+          ),
         ),
       ),
     );
