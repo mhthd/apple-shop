@@ -70,18 +70,21 @@ class ProductDetailRemoteDatasource extends IProductDetailDatasource {
 
   @override
   Future<List<ProductVariant>> getProductVariants() async {
-    List<Variant> variantsList = await getVariants();
-    List<VariantType> variantTypeList = await getVariantTypes();
+    try {
+      List<Variant> variantsList = await getVariants();
+      List<VariantType> variantTypeList = await getVariantTypes();
 
-    List<ProductVariant> productVariantList = [];
-    for (var varType in variantTypeList) {
-      var varList = variantsList.where((variant) {
-        return variant.typeId == varType.id;
-      }).toList();
+      List<ProductVariant> productVariantList = [];
+      for (var varType in variantTypeList) {
+        var varList = variantsList.where((variant) {
+          return variant.typeId == varType.id;
+        }).toList();
 
-      productVariantList.add(ProductVariant(varType, varList));
+        productVariantList.add(ProductVariant(varType, varList));
+      }
+      return productVariantList;
+    } on ApiException catch (e) {
+      throw ApiException(e.code, e.message);
     }
-
-    return productVariantList;
   }
 }
